@@ -10,6 +10,10 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "prettier": "^1.17.1"
+    "lodash": "^4.17.15",
+    "prettier": "^1.19.1"
+  },
+  "dependencies": {
+    "jest": "^24.9.0"
   }
 }
