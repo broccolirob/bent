@@ -1,5 +1,6 @@
 const _ = require("lodash");
 
+function initWatchVal() {}
 class Scope {
   constructor() {
     this.$$watchers = [];
@@ -8,7 +9,8 @@ class Scope {
   $watch(watchFn, listenerFn) {
     let watcher = {
       watchFn,
-      listenerFn
+      listenerFn,
+      last: initWatchVal
     };
     this.$$watchers.push(watcher);
   }
@@ -20,7 +22,11 @@ class Scope {
       oldValue = watcher.last;
       if (newValue !== oldValue) {
         watcher.last = newValue;
-        watcher.listenerFn(newValue, oldValue, this);
+        watcher.listenerFn(
+          newValue,
+          oldValue === initWatchVal ? newValue : oldValue,
+          this
+        );
       }
     });
   }
