@@ -9,7 +9,7 @@ class Scope {
   $watch(watchFn, listenerFn) {
     let watcher = {
       watchFn,
-      listenerFn,
+      listenerFn: listenerFn || function() {},
       last: initWatchVal
     };
     this.$$watchers.push(watcher);
